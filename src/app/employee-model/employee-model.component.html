@@ -1,0 +1,147 @@
+<!-- Modal Setup -->
+<div class="modal">
+  <div class="modal-content">
+    <div class="row">
+            <div class="alert-msg">
+               <app-alert></app-alert>
+            </div>
+      </div>
+   <div class="main-content " >
+    <div class="container-fluid card">
+      <form name="form" (ngSubmit)="f.form.valid && saveEmployee($event) " #f="ngForm" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" >
+                        <div class="header">
+                            <h4 class="title">Employee Profile Details</h4>
+                        </div>
+                        <div class="content">
+                          <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+                                        <label>Employee ID</label>
+                                        <input type="text" class="form-control" placeholder="Employee ID" name="emp_id" [(ngModel)]="empDetails.emp_id"   #emp_id="ngModel"
+                                            required />
+                                        <div *ngIf="f.submitted && !emp_id.valid" class="help-block">Employee ID is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                              
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+                                        <label>Employee Name</label>
+                                        <input type="text" class="form-control" placeholder="Employee Name" name="emp_name" [(ngModel)]="empDetails.emp_name" #emp_name="ngModel"
+                                            required />
+                                        <div *ngIf="f.submitted && !emp_name.valid" class="help-block">Employee Name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="row">
+                                <div class="col-md-8">
+
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted  }">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="empDetails.email" #email="ngModel" email required
+                                        />
+                                        <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+                                        <label>Desigantion</label>
+                                        <input type="text" class="form-control" placeholder="Desigantion" name="desigantion" [(ngModel)]="empDetails.designation" #desigantion="ngModel"
+                                            required />
+                                        <div *ngIf="f.submitted && !desigantion.valid" class="help-block">Desigantion is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <div class="col-md-6">
+                <div class="card card-user">
+                    <div class="header">
+                        <h4 class="title">Employee Skill Mapping</h4>
+
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+                                    <label>Reporting To</label>
+                                          <select class="form-control" name="reporting" [(ngModel)]="empDetails.reporting_to"  #reporting="ngModel"  role="listbox" required>
+                                              <option>Reporitng To</option>
+                                              <option *ngFor="let c of userService.getUserCollection()" [value]="c.emp_id">{{c.emp_name}}</option>
+                                          </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+
+                                    <label>Select Domain </label>
+                                     <angular2-multiselect (click)="$event.preventDefault()" [ngModelOptions]="{standalone: true}" [data]="domainsList" name="domainsList" [(ngModel)]="selectedDomains" [settings]="domainSettings" (onSelect)="onSelectDomain(selectedDomains)" (onDeSelect)="onSelectDomain(selectedDomains)"></angular2-multiselect>
+                                    <!--<select class="form-control" name="tech_domain" (change)="onSelectDept($event.target.value)" [(ngModel)]="empDetails.tech_domain" #tech_domain="ngModel" required role="listbox">
+                                              <option value="0" selected="selected">Select Domain</option>
+                                              <option *ngFor="let c of skillService.getDomainsCollection()" [value]="c.domain_name">{{c.domain_name}} </option>
+                                    </select>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="col-md-9">
+                                     <div class="form-group">
+                                        <label>Select Category </label>
+                                          <angular2-multiselect (click)="$event.preventDefault()" [ngModelOptions]="{standalone: true}" [data]="categoriesList" name="categoriesList" [(ngModel)]="selectedCatgs" [settings]="categorySettings" (onSelect)="onSelectCategory(selectedCatgs)" (onDeSelect)="onSelectCategory(selectedCatgs)"></angular2-multiselect> 
+                                      </div>
+                                </div>
+                            </div>
+
+
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group" >
+                                    <label>Select Skills</label>
+                                    <angular2-multiselect (click)="$event.preventDefault()" [ngModelOptions]="{standalone: true}" [data]="skillsList" name="skillsList"  [(ngModel)]="selectedSkills" [settings]="skillSettings"></angular2-multiselect>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <button type="submit" [disabled]="f.form.invalid " class="btn btn-info btn-fill pull-right">Update Employee Details</button>
+                    </div>
+                </div>
+            </div>
+          <div class="clearfix"></div>
+      </form>
+    </div>
+</div>
+
+  </div>
+
+   <div class="pull-right">
+    <button  (click)="onCancel()" class="btn btn-danger btn-simple btn-xs"  title="Close" type="button">
+          <i class="fa fa-times"></i>
+      </button>
+  </div>
+</div>
+<!-- END Modal Setup -->
+ 
+<!-- Modal Overlay -->
+<div class="modal-overlay"></div>

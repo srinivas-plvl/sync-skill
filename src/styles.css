@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+.list-area {
+    position: relative !important;
+    z-index: 999 !important;
+}
+
+.btn-xs {
+    font-size: 18px;
+    border-radius: 3px;
+    padding: 1px 9px;
+}
+.alert-msg{
+    text-align: center;
+    width: 80%;
+    margin: 1% 1%;
+    color: green;
+    font-size: 16px;
+}
+.selected-menu{
+    background: #31708f;
+    border-radius: 4px;
+}

@@ -1,0 +1,69 @@
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <div class="simple-text">
+                <div class="logo-img">
+                    <img src="assets/img/logo.png"/>
+                </div>
+               Sync Skill
+            </div>
+        </div>
+        <ul class="nav">
+            
+            <li [class.active]="profileService.getActive()=='user'"  *ngIf="profileService.loginType()==='1'">
+                <a routerLink="/user" >
+                    <i class="#"></i>
+                    <p>User Management</p>
+                </a>
+            </li>
+           
+            <li  [class.active]="profileService.getActive()=='employee' || profileService.getActive()=='uploademployee' || profileService.getActive()=='reports'">
+                 <a style="margin-bottom:0px" routerLink="/employee" >
+                    <i [ngClass]="subMenu ? 'pe-7s-angle-down' : 'pe-7s-angle-right'" (click)="subMenu ? subMenu = false : subMenu = true;" ></i>
+                    <p>Employee Management</p>
+                </a>
+                
+                <ul class="sub-nav " *ngIf="subMenu" >
+                    <li    *ngIf="profileService.loginType()==='1'">
+                        <a  [class.actived]="profileService.getActive()=='uploademployee'" routerLink="/uploademployee" >
+                           <i class="pe-7s-angle-right"></i>
+                            <p>Upload Employee Data</p>
+                        </a>
+                    </li>
+
+                     <li  >
+                        <a [class.actived]="profileService.getActive()=='reports'" routerLink="/reports" >
+                             <i class="pe-7s-angle-right"></i>
+                            <p>Report Management</p>
+                        </a>
+                    </li>
+                     <!--<li [class.active]="profileService.getActive()=='addemployee'"  *ngIf="profileService.loginType()==='1'">
+                        <a (click)="openEmployeeModal(empdata={eid:'temp'})" >
+                             <i class="pe-7s-angle-right"></i>
+                            <p>Add New Employee</p>
+                        </a>
+                    </li>-->
+                </ul>
+                
+            </li>
+             <!--<li [class.active]="profileService.getActive()=='uploademployee'">
+                 <a routerLink="/uploademployee" >
+                    <i class="#"></i>
+                    <p>Upload Employee Data</p>
+                </a>
+            </li>-->
+            
+            <li [class.active]="profileService.getActive()=='skill'" *ngIf="profileService.loginType()==='1' ||  profileService.loginType()==='2'">
+                <a routerLink="/skill" >
+                    <i class="#"></i>
+                    <p>Skill Management</p>
+                </a>
+            </li>
+            <!--<li [class.active]="profileService.getActive()=='reports'" >
+                <a routerLink="/reports" >
+                    <i class="#"></i>
+                    <p>Report Management</p>
+                </a>
+            </li>-->
+            
+        </ul>
+    </div>

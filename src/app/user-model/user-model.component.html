@@ -1,0 +1,139 @@
+<!-- Modal Setup -->
+<div class="modal">
+  <div class="modal-content">
+    
+   <div class="main-content " >
+    <div class="container-fluid card">
+      <form name="form" (ngSubmit)="f.form.valid && saveUser($event)" #f="ngForm" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" >
+                    <div class="header">
+                        <h4 class="title">User Profile Details</h4>
+                       
+                    </div>
+                    <div class="content">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                        <label>Employee Name</label>
+                                        
+                                        <input type="text" class="form-control"  value="{{ userData.emp_name }}" placeholder="Employee Name" name="emp_name" [(ngModel)]="userData.emp_name" #emp_name="ngModel" required />
+                                         <div *ngIf="f.submitted && !emp_name.valid" class="help-block">Employee Name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                   <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                        <label>Employee ID</label>
+                                        <input type="text" class="form-control"  value="{{ userData.emp_id }}" placeholder="Employee ID" name="emp_id" [(ngModel)]="userData.emp_id" #emp_id="ngModel" required />
+                                         <div *ngIf="f.submitted && !emp_id.valid" class="help-block">Employee ID is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                        <label>Desigantion</label>
+                                        <input type="text" class="form-control"  value="{{ userData.designation }}" placeholder="Designation" name="designation" [(ngModel)]="userData.designation" #designation="ngModel" required />
+                                         <div *ngIf="f.submitted && !designation.valid" class="help-block">Designation is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control"  placeholder="Email" value="{{ userData.email }}" name="email" [(ngModel)]="userData.email" #email="ngModel" email required />
+                                         <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                     </div>
+                    </div>
+                </div>
+            <div class="col-md-6">
+                <div class="card ">
+                   <div class="header">
+                        <h4 class="title">User Login Details</h4>
+                        
+                    </div>
+                    <div class="content">
+                           
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                        <label>Username</label>
+                                        <input type="text" class="form-control" value="{{ userData.user_name }}"   placeholder="Username" name="username" [(ngModel)]="userData.user_name" #username="ngModel" required />
+                                         <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                  
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control"  value="{{ userData.password }}" placeholder="Password" name="password" [(ngModel)]="userData.password" #password="ngModel" required />
+                                         <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                          <label>Type Of Login </label>
+                                            <select  name="loginTypes" class="form-control" [(ngModel)]="userData.login_type" required>
+                                                <option *ngFor="let loginType of loginTypes" [value]="loginType.type" >{{loginType.name}} </option>
+                                            </select>
+                                      </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                          <label>Status</label>
+                                            <select name="status" [(ngModel)]="userData.status"  class="form-control"  role="listbox" required>
+                                              <option value=""  selected="selected">Select Status</option>
+                                              <option value="1">Active</option>
+                                              <option value="0">Inactive</option>
+                                            </select>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <button type="submit" [disabled]="f.form.invalid" class="btn btn-info btn-fill pull-right">Update User Details</button>
+          
+                  </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>    
+        </form>
+    </div>
+</div>
+
+  </div>
+
+   <div class="pull-right">
+    <button  (click)="onCancel()" class="btn btn-danger btn-simple btn-xs"  title="Close" type="button">
+          <i class="fa fa-times"></i>
+      </button>
+  </div>
+</div>
+<!-- END Modal Setup -->
+ 
+<!-- Modal Overlay -->
+<div class="modal-overlay"></div>

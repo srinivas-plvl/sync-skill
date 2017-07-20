@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        
+         <div class="navbar-collapse collapse" id="navbar-main">
+         
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <p>
+                            Welcome Admin 
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/profile" >Account</a></li>
+                        <li><a (click)="downloadEmpData($event)" >Download Employees</a></li>
+                        <li><a routerLink="/changepassword">Change Password</a></li>
+                        <li><a (click)="logout()">Logout</a></li>
+                        <li class="divider"></li>
+                    
+                    </ul>
+                </li>
+                <li class="separator hidden-lg hidden-md"></li>
+            </ul>
+             
+        </div>
+    </div>
+</nav>

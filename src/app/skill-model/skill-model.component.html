@@ -1,0 +1,96 @@
+<!-- Modal Setup -->
+<div class="modal">
+  <div class="modal-content">
+    
+   <div class="main-content " >
+    <div class="container-fluid card">
+        
+      <form name="form" (ngSubmit)="f.form.valid && saveSkill()" #f="ngForm" novalidate>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" >
+                    <div class="header">
+                        <h4 class="title">Skill Details</h4>
+                    </div>
+                    <div class="content">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted}">
+                                        <label>Domain Name </label>
+                                        <select class="form-control" name="domain_name" [ngClass]="{'other-type': otherDomain}" (change)="getDomain($event)" [(ngModel)]="skillData.domain" #domain="ngModel" required role="listbox">
+                                              <option value="" selected="selected" >Select Domain</option>
+                                              <option *ngFor="let c of domains " [title]="c.domain_name"  [value]="c.domain_id"  >{{c.domain_name}}</option>
+                                       </select>
+                                      
+                                        <input type="text" [ngClass]="{'other-type': !otherDomain}" class="form-control"  placeholder="Domain Name" name="domain" [(ngModel)]="skillData.domain" #domain="ngModel" required />
+                                        <div *ngIf="f.submitted && !domain.valid" class="help-block">Domain is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-10">
+                                   <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !skill_name.valid }">
+                                        <label>Category Name</label>
+                                        <select class="form-control" name="category_name" [ngClass]="{'other-type': otherCategory}" (change)="getCategory($event)" [(ngModel)]="skillData.category" #category="ngModel" required role="listbox">
+                                              <option value="" selected="selected">Select Category</option>
+                                              <option *ngFor="let c of catgs" [title]="c.category_name" [value]=c.category_id>{{c.category_name}}</option>
+                                        </select>
+
+                                        <input type="text" class="form-control"  [ngClass]="{'other-type': !otherCategory}"  placeholder="Category Name" name="category" [(ngModel)]="skillData.category" #category="ngModel" required />
+                                         <div *ngIf="f.submitted && !category.valid" class="help-block">Category Name is required</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !skill_name.valid }">
+                                        <label>Skill Name</label>
+                                        <input type="text" class="form-control"  value="{{ skillData.skill_name }}" placeholder="Skill Name" name="skill_name" [(ngModel)]="skillData.skill_name" #skill_name="ngModel" required />
+                                         <div *ngIf="f.submitted && !skill_name.valid" class="help-block">Skill Name is required</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                           
+                           <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                          <label>Status</label>
+                                            <select name="status" [(ngModel)]="skillData.status"  class="form-control"  role="listbox" required>
+                                              <option value="" selected="selected">Select Status</option>
+                                              <option value="1">Active</option>
+                                              <option value="0">Inactive</option>
+                                            </select>
+                                      </div>
+                                </div>
+                            </div>
+                     </div>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">    
+                    <button [disabled]="f.form.invalid" class="btn btn-info btn-fill pull-right">Update Skill Details</button>
+                  </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>    
+        </form>
+    </div>
+</div>
+
+  </div>
+
+   <div class="pull-right">
+    <button  (click)="onCancel()" class="btn btn-danger btn-simple btn-xs"  title="Close" type="button">
+          <i class="fa fa-times"></i>
+      </button>
+  </div>
+</div>
+<!-- END Modal Setup -->
+ 
+<!-- Modal Overlay -->
+<div class="modal-overlay"></div>

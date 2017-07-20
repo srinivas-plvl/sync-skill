@@ -1,0 +1,87 @@
+
+<div class="main-content " >
+    <div class="container-fluid card"  >
+        <div class="row" *ngIf="applicationService.showMsg">
+            <div class="alert-msg">{{ errMsg }}</div>
+        </div>
+        <div class="row">
+                <div class="col-md-12" style="margin: 20px 0px;">
+                    <button type="submit" class="btn btn-info btn-fill pull-right" [disabled]="empList.length !==0" (click)="openEmployeeModal(passedParameter = {
+    username: 'user',
+    password: 'pass'
+  }); " >  Add New Employee</button>
+                     <modal-placeholder></modal-placeholder>
+                </div>
+          </div>
+
+        <div class="row" *ngIf="userService.getEmpCollection()">
+            <div class="col-md-12">
+                <div class="card" >
+                    <div class="header">
+                        
+                        <div class="col-md-4">
+                          <h4 class="title">Employee Management</h4>
+                        </div>
+                        <div class="col-md-8">
+                            Filter by Employee Name: <input class="form-control" [(ngModel)]="filterQuery"/>
+                        </div>
+                    </div>
+                    <div class=" table-responsive table-full-width">
+                      <table class="table table-hover table-striped"[mfData]="userService.getEmpCollection()  | dataFilter : filterQuery" #mf="mfDataTable"
+                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [mfIsServerPagination]="false" [(mfSortOrder)]="sortOrder">
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>Emp ID</th>
+                                    <th>Name</th>
+                                    <th>Domain</th>
+                                    <th>Category</th>
+                                    <th>Skills</th>
+                                    <th>Action</th>
+                                </tr>
+                            <tbody>
+
+                                 <tr *ngFor="let item of mf.data">
+                                     <td>
+                                         <input type='checkbox'  name="emp_selected" value="{{item.emp_id}}"  (change)="updateEmpSelect($event.target.getAttribute('value'),$event)">
+                                    </td>
+                                    <td>{{item.emp_id}} </td>
+                                    <td>{{item.emp_name}}</td>
+                                     <td>{{item.tech_domain}}</td>
+                                    <td>{{item.tech_category}}</td>
+                                    <td>{{item.skill_set}}</td>
+                                     <td class="td-actions " [class.td-actions-ctm]="empList[0] === item.emp_id && empList.length ===1">
+                                        <button [disabled]="empList[0] !== item.emp_id || empList.length !==1" (click)="openEmployeeModal(item);"  class="btn btn-info btn-simple btn-xs" title="Edit Task" type="button">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button [disabled]="empList.length !==0" (click)="remove(item)" class="btn btn-danger btn-simple btn-xs"  title="Remove" type="button">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                             <tfoot>
+                                <tr>
+                                 
+                                     <td colspan="2">
+                                          {{ empList[0] }}<button type="submit" [disabled]="empList.length <= 1" class="btn btn-info btn-fill pull-right" (click)="openSkillSetModal(empList); " > Map Skills To Employee</button>
+                                    </td>
+                                     <td colspan="6">
+                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                    </td>
+                                    
+                                </tr>
+                            </tfoot>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="clearfix"></div>    
+    </div>
+  
+</div>

@@ -1,0 +1,31 @@
+<div class="main-content " >
+    <div class="main-content  container-fluid card">
+         <form name="form" (ngSubmit)="f.form.valid && saveSkill()" #f="ngForm" novalidate>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" >
+                    <div class="header">
+                        <h4 class="title">Select Employee Data</h4>
+                    </div>
+                    <div class="content">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted}">
+                                        <label>Domain Name </label>
+                                        <input type="file" class="form-control" type="file" name="fileEmpData" (change)="fileChange($event)" placeholder="Upload file" accept=".csv,.xlsx,.xls">
+                                    </div>
+                                </div><div class="col-md-2"></div>
+                                 <div class="col-md-3">
+                                    <div class="form-group">
+                                        <button style="margin-top: 25px" [disabled]="!empFile" (click)="uploadData($event)"class=" btn btn-info btn-fill">Upload Employee Details</button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                     </div>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>

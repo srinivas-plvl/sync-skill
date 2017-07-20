@@ -1,0 +1,12 @@
+{
+"domainsData":["Personal Cloud","Big Data & Analytics","Enterprise","Messaging","Cloud Automation (Activation)","Deal Space"],
+"categoryData":
+    [
+        {"categoryName":"Programming Languages","skillData":["Java","c++", "Ruby", ".Net","C#", "Groovy"]},
+        {"categoryName":"Workflow","skillData":["BPM", "Drools", "ILOG"]},
+        {"categoryName":"Framework","skillData":["Spring", "Spring Boot", "CXF", "Struts", "JSF", "Jersey", "Hadoop", "Shiro"]},
+        {"categoryName":"Scripting","skillData":["Shel", "Java Script", "Perl", "Python", "JSF", "Angular JS"]},
+        {"categoryName":"JMS","skillData":["Rabbit MQ", "Swift MQ", "Active MQ"]}
+    ]
+}
+ 

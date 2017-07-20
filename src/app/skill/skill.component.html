@@ -1,0 +1,70 @@
+<div class="main-content " >
+    <div class="main-content  container-fluid card" >
+          <div class="row">
+                <div class="col-md-12" style="margin: 20px 0px;">
+                    <button type="submit" class="btn btn-info btn-fill pull-right" (click)="openSkillModal(skillData = {
+    type: 'create'
+  }); " >  Add New Skill</button>
+                     <modal-placeholder></modal-placeholder>
+                </div>
+        </div>
+
+      
+       
+        <div class="row" *ngIf="skillService.getSkillsSetCollection()">
+            <div class="col-md-12">
+                <div class="card" >
+                    <div class="header">
+                        <div class="col-md-4">
+                         <h4 class="title">Skill Management</h4>
+                        <p class="category">Skill Management</p>
+                        </div>
+                        <div class="col-md-8">
+                            Filter by Skill Name: <input class="form-control" [(ngModel)]="skillQuery"/>
+                        </div> 
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped"[mfData]="skillService.getSkillsSetCollection() | skillFilter : skillQuery" #mf="mfDataTable"
+                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [mfIsServerPagination]="false" [(mfSortOrder)]="sortOrder">
+                            <thead>
+                                <tr>
+                                    <th>Skil Name</th>
+                                    <th>Category</th>
+                                    <th>Domain</th>
+                                     <td>Status</td>
+                                    <th>Action</th>
+                                </tr>
+                            <tbody>
+                               <tr *ngFor="let item of mf.data">
+                                    
+                                    <td>{{item.skill_name}}</td>
+                                    <td>{{item.category_name}}</td>
+                                    <td>{{item.domain_name}}</td>
+                                    <td>{{item.status}}</td>
+                                     <td class="td-actions">
+                                        <button (click)="openSkillModal(item)"  class="btn btn-info btn-simple btn-xs" title="Edit Task" type="button">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button  (click)="removeSkill(item)" class="btn btn-danger btn-simple btn-xs"  title="Remove" type="button">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                               
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="main-content">
+   <div class="container-fluid">
+         <button type="submit" class="btn btn-info btn-fill pull-right">Map Employee Skill</button>
+         
+         <button type="submit" style="margin-right:20px" class="btn btn-info btn-fill pull-right">Add New Employee</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" >
+                    <div class="header">
+                        <h4 class="title">Employee Management</h4>
+                        <p class="category">Employee Management</p>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                      <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Skill</th>
+                                    <th>Action</th>
+                                </tr>
+                            <tbody>
+                                <tr>
+                                   <td>
+                                        <label class="checkbox">
+                                            <input type="checkbox" value="" data-toggle="checkbox">
+                                        </label>
+                                    </td>
+                                    <td>1</td>
+                                    <td>Test 1</td>
+                                    <td>Development</td>
+                                    <td>Java , Java, Java, Java, Java , Java, Java, Java,<br /> Java , Java, Java, Java<br /> Java , Java, Java, Java<br /> Java , Java, Java, Java<br /> Java , Java, Java, Java<br /> Java , Java, Java, Java</td>
+                                     <td> <button type="submit" class="btn btn-info btn-fill">Update </button> <button type="submit" class="btn btn-info btn-fill">Delete </button> </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="checkbox">
+                                            <input type="checkbox" value="" data-toggle="checkbox">
+                                        </label>
+                                    </td>
+                                    <td>2</td>
+                                    <td>Test 2</td>
+                                    <td>QA</td>
+                                   <td>Selenium</td>
+                                     <td> <button type="submit" class="btn btn-info btn-fill">Update </button> <button type="submit" class="btn btn-info btn-fill">Delete </button> </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="checkbox">
+                                            <input type="checkbox" value="" data-toggle="checkbox">
+                                        </label>
+                                    </td>
+                                     <td>3</td>
+                                     <td>Test 3</td>
+                                    <td>Network</td>
+                                    <td>CCNA</td>
+                                    <td> <button type="submit" class="btn btn-info btn-fill">Update </button> <button type="submit" class="btn btn-info btn-fill">Delete </button> </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="checkbox">
+                                            <input type="checkbox" value="" data-toggle="checkbox">
+                                        </label>
+                                    </td>
+                                    <td>4</td>
+                                    <td>Test 4</td>
+                                    <td>Arch</td>
+                                    <td>Cloud</td>
+                                    <td> <button type="submit" class="btn btn-info btn-fill">Update </button> <button type="submit" class="btn btn-info btn-fill">Delete </button> </td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+     <div class="container-fluid">
+        
+            
+        <div class="row">
+            
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Skill Management</h4>
+                        
+                    </div>
+                    <div class="content">
+                           
+                            <label for="first">Select Domain</label>
+                                
+                                <select id="first" class="form-control" [(ngModel)]="domainsList.itemName" (change)="onSelectCatg($event.target.value)" role="listbox">
+                                    <option value="0" selected="selected">Select Category</option>
+                                    <option *ngFor="let c of domainsList" [value]="c.itemName">{{c.itemName}}</option>
+                                </select>
+                            <label for="first">Select Category</label>
+                            <angular2-multiselect [data]="categoriesList" [(ngModel)]="selectedItems" [settings]="categorySettings" (onSelect)="onSelectCategory(selectedItems)" (onDeSelect)="onSelectCategory(selectedItems)"></angular2-multiselect>  
+                            
+                            <label for="first">Select Skill Name</label>
+                            <angular2-multiselect [data]="skillsList" [(ngModel)]="selectedSkills" [settings]="skillSettings" (onSelect)="onSkillSelect($event)" (onDeSelect)="OnSkillDeSelect($event)"></angular2-multiselect>  
+                             <button type="submit" class="btn btn-info btn-fill pull-right">Update Skill</button>
+                              <div class="clearfix"></div>     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
